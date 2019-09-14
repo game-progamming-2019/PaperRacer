@@ -8,9 +8,12 @@ var ROWS: int
 var rectangle_size = 51
 
 var RECTANGLES = []
+
 # Baut das Level
 # 14.09 - Baut ein Feld der Größe ROWS, COLUMNS
-func initialise(rows, columns):
+func _initialise(rows, columns):
+	Settings.setRacetrackSize(rows, columns)
+	
 	self.ROWS = rows
 	self.COLUMNS = columns
 	
@@ -20,7 +23,7 @@ func initialise(rows, columns):
 			addRectangle(x, y)
 	
 func addRectangle(x, y):
-	var rect = Rectangle.new(x * rectangle_size + rectangle_size / 2, y * rectangle_size + rectangle_size / 2, rectangle_size)
+	var rect = Rectangle.new(x * rectangle_size + rectangle_size / 2, y * rectangle_size + rectangle_size / 2)
 	rect.set_name("Rectangle_" + str(x) + "_" + str(y))
 	
 	RECTANGLES[x].append(rect)

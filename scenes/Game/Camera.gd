@@ -6,16 +6,25 @@ export var SPEED: int = 10
 var move_camera = false
 var start_position = Vector2.ZERO
 
+func _initiliase():
+	self.position = Vector2((Settings.ROWS / 2) * Settings.RECTANGLE_SIZE, (Settings.COLUMNS / 2) * Settings.RECTANGLE_SIZE)
+	
 func _input(event):
 	if event.is_action_pressed("ui_drag"):
-		print("Hello")
 		move_camera = true
 		start_position = get_global_mouse_position()
 		
 	if event.is_action_released("ui_drag"):
-		print("Tschüss")
 		move_camera = false
-	
+		
+	if event.is_action_pressed("ui_scroll_up"):
+		if (self.zoom > Vector2(1,1)):
+			self.zoom -= Vector2(0.05, 0.05)
+		
+	elif event.is_action_pressed("ui_scroll_down"):
+		if (self.zoom < Vector2(3,3)):
+			self.zoom += Vector2(0.05, 0.05)
+		
 func _physics_process(delta):
 	if move_camera:
 		self.position += start_position - get_global_mouse_position()
