@@ -1,3 +1,6 @@
+# Autor: Christoph Brosch
+# Erstellt 14.09.2019
+# 14.09.2019 - Provisorisch Erstellt
 extends Camera2D
 
 var direction:Vector2 = Vector2.ZERO
