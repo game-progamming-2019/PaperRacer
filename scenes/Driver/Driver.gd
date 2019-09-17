@@ -3,11 +3,13 @@ class_name Driver
 
 var NAME: String
 var VEHICLE: Vehicle
+var KI: bool
 var _position: Vector2
 
-func _init(name, vehicle):
+func _init(name, vehicle, ki):
 	self.NAME = name
 	self.VEHICLE = vehicle
+	self.KI = ki
 	self.set_texture(VEHICLE.getTexture())
 
 func setPosition(x, y):

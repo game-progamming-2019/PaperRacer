@@ -9,7 +9,7 @@ export var SPEED: int = 10
 var move_camera = false
 var start_position = Vector2.ZERO
 
-func _initiliase():
+func initialise():
 	self.position = Vector2((Settings.ROWS / 2) * Settings.RECTANGLE_SIZE, (Settings.COLUMNS / 2) * Settings.RECTANGLE_SIZE)
 	
 func _input(event):

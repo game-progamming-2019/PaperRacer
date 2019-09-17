@@ -8,3 +8,5 @@ var COLUMNS: int
 func setRacetrackSize(rows, columns):
 	self.ROWS = rows
 	self.COLUMNS = columns
+	
+# ReadOnly Flag

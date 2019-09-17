@@ -12,7 +12,7 @@ var RECTANGLES = []
 
 # Baut das Level
 # 14.09 - Baut ein Feld der Größe ROWS, COLUMNS
-func _initialise(rows, columns):
+func initialise(rows, columns):
 	Settings.setRacetrackSize(rows, columns)
 	
 	self.ROWS = rows
@@ -32,7 +32,7 @@ func addRectangle(x, y):
 
 #!Important
 # Errechnet die Felder auf die der Fahrer in seinem Zug fahren darf.
-func get_possibilities_for(driver):
+func getPossibilities(driver):
 	# Parameter die vom Fahrzeug kommen
 	var speed = 3
 	# var direction
@@ -71,7 +71,7 @@ func getRectangle(x,y):
 		return null
 	else:
 		return RECTANGLES[x][y]
-func getCoordinatesOfGridNode(gridNode):
+func getCoordinates(gridNode):
 	for x in range(self.ROWS):
 		for y in range(self.COLUMNS):
 			if gridNode == RECTANGLES[x][y]:
