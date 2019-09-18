@@ -4,8 +4,15 @@ extends Node2D
 
 # Skript das sich nur um das rundenbasierte Verhalten kümmert
 # Erzeugt einen Thread
-const Turn = preload("res://scripts/gamemaster/Turn.gd")
-var TURNMANAGER = null
+const Turn = preload("res://scenes/Game/scripts/Turn.gd")
+# Kümmert sich um die Regeln des Spiels
+const Rules = preload("res://scenes/Game/scripts/Rules.gd")
+# Schreibt eine Abschrift des Spielverlaufs und liefert Informationen zu vorherigen Zügen
+const Transcription = preload("res://scenes/Game/scripts/Transcription.gd")
+
+var TURNMANAGER: Turn = null
+var RULEMANAGER: Rules = null
+var TRANSCRIPTION: Transcription = null
 
 # Notwendig für das richtige Verhalten der Funktion "Driver_Turn()" innerhalb von Turn.gd
 signal mouse_click
@@ -18,25 +25,24 @@ var clicked_node: Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
-	$Racetrack.initialise(10, 10)
+	$Racetrack.initialise(100, 100)
 	$Camera.initialise()
 	
 	# Call by Reference, Participants vergibt nur eine Referenz auf sich.
 	TURNMANAGER = Turn.new(self, $Racetrack, Participants)
-	
-	#	$Racetrack.RECTANGLES[4][4].highlight()
-	#	yield(get_tree().create_timer(2), "timeout")
-	#	$Racetrack.RECTANGLES[4][4].unhighlight()
+	RULEMANAGER = Rules.new()
 	
 	addParticipant(Driver.new("Christoph", Mercedes.new(), false))
-	addParticipant(Driver.new("Anja", Golf.new(), true))
+	# addParticipant(Driver.new("Anja", Golf.new(), true))
 	initialiseDrivers()
+	TRANSCRIPTION = Transcription.new(Participants)
 	TURNMANAGER.start()
 	
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
 			if !event.is_pressed():
+				# NULL FEHLER
 				clicked_node = $Ray.castRayAt(get_global_mouse_position()).get_parent()
 				emit_signal("mouse_click")
 			
@@ -54,31 +60,47 @@ func initialiseDrivers():
 		rng.randomize()
 		driver.setPosition(rng.randi_range(0, Settings.COLUMNS - 1), rng.randi_range(0, Settings.ROWS - 1))
 
+# Hauptfunktion zuständig für die Aktion die ein Fahrer vornimmt
 func action(driver): 
-	print(driver.NAME + "'s Aktion")
-	var selection = $Racetrack.getPossibilities(driver)
-	if driver.KI:
+	if Settings.DEBUG:
+		print(driver.NAME + "'s Aktion")
 		
+	var current_position = driver.getPosition()
+	var target_position: Vector2
+	# print("Previous Vector: " + TRANSCRIPTION.getPreviousVector(driver))
+	var vector_selection = RULEMANAGER.getPossibilities(TRANSCRIPTION.getPreviousVector(driver))
+	print(vector_selection)
+	var gridNode_selection = $Racetrack.getGridNodes(driver.getPosition(), vector_selection)
+	print(gridNode_selection)
+	
+	if driver.KI:
 		# Provisorisch
 		# "KI" wird auf ein zufälliges erlaubtes Feld gesetzt
 		var rng = RandomNumberGenerator.new()
 		rng.randomize()
-		var x = rng.randi_range(0, selection.size() - 1) 
-		driver.setPosition($Racetrack.getCoordinates(selection[x]).x, $Racetrack.getCoordinates(selection[x]).y)
+		var x = rng.randi_range(0, gridNode_selection.size() - 1) 
+		target_position = Vector2($Racetrack.getCoordinates(gridNode_selection[x]).x, $Racetrack.getCoordinates(gridNode_selection[x]).y)
+		
 	else:
 		clicked_node = null
-		$Racetrack.highlight(selection)
+		$Racetrack.highlight(gridNode_selection)
 		
 		# Highlight und Unhighlight wird nur für den Spieler gemacht.
 		yield(self, "mouse_click")
-		if !(clicked_node in selection):
+		if !(clicked_node in gridNode_selection):
 			action(driver)
 		else:
-			var v = $Racetrack.getCoordinates(clicked_node)
-			driver.setPosition(v.x, v.y)
-			$Racetrack.unhighlight(selection)
-			emit_signal("action_finished")
-		
+			target_position = $Racetrack.getCoordinates(clicked_node)
+			$Racetrack.unhighlight(gridNode_selection)
+			
+	driver.setPosition(target_position.x, target_position.y)
+	# Mathe is hier ggf. noch falsch
+	TRANSCRIPTION.recordMovement(driver,-(current_position - target_position))
+	
+	# Es hat zu Problemen geführt wenn das Signal früher gesetzt wird,
+	# da Turn und Transcription "zeitgleich" auf Global.Turn zugreifen.
+	emit_signal("action_finished")
+	
 	# func _init()
 	#	Initialisiert Racetrack
 	#   Initialisiert Camera

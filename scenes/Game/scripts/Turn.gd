@@ -12,7 +12,6 @@ var done: bool
 var _clicked_node = null
 var _thread = Thread.new()
 var _end_thread = false
-var turn_count: int = 1
 
 func _init(Gamemaster, Racetrack, Participants):
 	self.Gamemaster = Gamemaster
@@ -37,7 +36,7 @@ func _turn(threadgarbage = null) -> void:
 	_turn()
 	
 func _initialiseTurn() -> void:
-	turn_count += 1
+	Global.incrementTurn()
 	
 func _driverTurns() -> void:
 	done = false
@@ -50,7 +49,7 @@ func _driverTurns() -> void:
 			done = true
 	
 func _endTurn() -> void:
-	print("Ende der " + str(turn_count) + " Runde")
+	print("Ende der " + str(Global.getRound()) + " Runde")
 	pass
 	
 # Möglichkeit den Thread von außerhalb zu beenden.

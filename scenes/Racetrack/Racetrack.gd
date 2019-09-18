@@ -29,32 +29,13 @@ func addRectangle(x, y):
 	
 	RECTANGLES[x].append(rect)
 	self.add_child(rect)
-
-#!Important
-# Errechnet die Felder auf die der Fahrer in seinem Zug fahren darf.
-func getPossibilities(driver):
-	# Parameter die vom Fahrzeug kommen
-	var speed = 3
-	# var direction
-	var position = driver.getPosition()
 	
-	# Berechnung der Strecken
-	# LANGE LISTE AN PARAMETERN
-	var x = calculateSelection(position, speed)
-	return x
-	
-# PROVISORISCH
-# Liefert alle Rechtecke im Umkreis von Speed in einem Array zurück
-func calculateSelection(position, speed):
+func getGridNodes(position: Vector2, selection):
 	var field = []
-	# + 1 weil range() von -speed bis speed - 1 geht
-	for x in range(-speed, speed + 1):
-		for y in range(-speed, speed +1):
-			if x != 0 || y != 0:
-				if getRectangle(position.x + x, position.y + y) != null:
-					field.append(getRectangle(position.x + x, position.y + y))
+	for vector in selection:
+		field.append(getRectangle(position.x + vector.x, position.y + vector.y))
 	return field
-
+	
 func highlight(selection):
 	for rectangle in selection:
 		rectangle.highlight()
@@ -65,12 +46,13 @@ func unhighlight(selection):
 		
 func getRectangle(x,y):
 	# Überprüfe überschreitungen der Feldgröße
-	if x < 0 || x >= COLUMNS:
-		return null
-	elif y < 0 || y >= ROWS:
-		return null
+	if x < 0 || x >= COLUMNS - 1:
+		return
+	elif y < 0 || y >= ROWS - 1:
+		return
 	else:
 		return RECTANGLES[x][y]
+		
 func getCoordinates(gridNode):
 	for x in range(self.ROWS):
 		for y in range(self.COLUMNS):
