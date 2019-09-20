@@ -25,7 +25,7 @@ var clicked_node: Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
-	$Racetrack.initialise(100, 100)
+	$Racetrack.initialise(10, 10)
 	$Camera.initialise()
 	
 	# Call by Reference, Participants vergibt nur eine Referenz auf sich.
@@ -58,8 +58,9 @@ func initialiseDrivers():
 		# Startposition
 		var rng = RandomNumberGenerator.new()
 		rng.randomize()
+		
 		driver.setPosition(rng.randi_range(0, Settings.COLUMNS - 1), rng.randi_range(0, Settings.ROWS - 1))
-
+		# driver.setPosition(4, 4)
 # Hauptfunktion zuständig für die Aktion die ein Fahrer vornimmt
 func action(driver): 
 	if Settings.DEBUG:
@@ -67,11 +68,11 @@ func action(driver):
 		
 	var current_position = driver.getPosition()
 	var target_position: Vector2
-	# print("Previous Vector: " + TRANSCRIPTION.getPreviousVector(driver))
+	print("Previous Vector: " + str(TRANSCRIPTION.getPreviousVector(driver)))
 	var vector_selection = RULEMANAGER.getPossibilities(TRANSCRIPTION.getPreviousVector(driver))
-	print(vector_selection)
+	print("Possible Vectors: " + str(vector_selection))
 	var gridNode_selection = $Racetrack.getGridNodes(driver.getPosition(), vector_selection)
-	print(gridNode_selection)
+	print("Possible GridNodes: " + str(gridNode_selection))
 	
 	if driver.KI:
 		# Provisorisch
@@ -84,22 +85,24 @@ func action(driver):
 	else:
 		clicked_node = null
 		$Racetrack.highlight(gridNode_selection)
-		
 		# Highlight und Unhighlight wird nur für den Spieler gemacht.
 		yield(self, "mouse_click")
+		print("1")
 		if !(clicked_node in gridNode_selection):
 			action(driver)
 		else:
 			target_position = $Racetrack.getCoordinates(clicked_node)
 			$Racetrack.unhighlight(gridNode_selection)
-			
+	print("2")
 	driver.setPosition(target_position.x, target_position.y)
 	# Mathe is hier ggf. noch falsch
 	TRANSCRIPTION.recordMovement(driver,-(current_position - target_position))
 	
+	print("3")
 	# Es hat zu Problemen geführt wenn das Signal früher gesetzt wird,
 	# da Turn und Transcription "zeitgleich" auf Global.Turn zugreifen.
 	emit_signal("action_finished")
+	print("4")
 	
 	# func _init()
 	#	Initialisiert Racetrack

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/karo.png-7f6c351dd0c60efb0d0f24317e59c50e.stex"
+path="res://.import/karo.png-ba016e4397b569dcea67c2e9e7b6a3b5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/racetrack/rectangle/karo.png"
-dest_files=[ "res://.import/karo.png-7f6c351dd0c60efb0d0f24317e59c50e.stex" ]
+source_file="res://assets/racetrack/gridnode/karo.png"
+dest_files=[ "res://.import/karo.png-ba016e4397b569dcea67c2e9e7b6a3b5.stex" ]
 
 [params]
 

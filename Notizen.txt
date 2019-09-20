@@ -1,0 +1,52 @@
+Thread: 
+call_deferred("Method", Arg1, Arg2)
+
+Mit print vorm Signal:
+
+Stuck in Runde: 2
+Stuck in Runde: 2
+Stuck in Runde: 2
+Die Aktion ist vorbei
+Stuck in Runde: 2
+Ende der 2 Runde
+
+Mit print hinterm Signal:
+
+Stuck in Runde: 2
+Stuck in Runde: 2
+Stuck in Runde: 2
+Die Aktion ist vorbei - Hinter dem Signal
+Ende der 2 Runde
+
+Mit mehreren prints zwischen Yield und dem Signal:
+
+Stuck in Runde: 5
+1 - Vor dem Signal
+Stuck in Runde: 5
+2 - Vor dem Signal
+Stuck in Runde: 5
+3 - Vor dem Signal
+Stuck in Runde: 5
+4 - Hinter dem Signal
+Ende der 5 Runde
+
+yield() wechselt schnell zwischen den Funktionen
+
+Mit mehreren prints zwischen Yield und dem Signal und mehreren Ausgaben
+
+Nachricht
+Stuck in Runde: 1
+Nachricht
+Stuck in Runde: 1
+Nachricht
+1
+Stuck in Runde: 1
+2
+Nachricht
+Stuck in Runde: 1
+3
+Nachricht
+Stuck in Runde: 1
+4
+Ende der 1 Runde
+ 

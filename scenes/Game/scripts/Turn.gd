@@ -31,6 +31,7 @@ func _turn(threadgarbage = null) -> void:
 	# Kein wirkliches MultiThreading, das Programm läuft weiter während er auf yield() wartet.
 	# Ähnlich wie Asynch in Javascript
 	while not done:
+		print("Stuck in Runde: " + str(Global.getRound()) + " mit dem Thread: " + str(_thread.get_id()))
 		pass
 	_endTurn()
 	_turn()
@@ -42,7 +43,7 @@ func _driverTurns() -> void:
 	done = false
 	for driver in Participants:
 		Gamemaster.action(driver)
-		# Wenn die der Fahrer eine KI ist, entstand ein Deadlock.
+		# Wenn der Fahrer eine KI ist, entstand ein Deadlock.
 		if not driver.KI:
 			yield(Gamemaster, "action_finished")
 		if driver == Participants.back():

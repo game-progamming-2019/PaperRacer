@@ -2,10 +2,10 @@
 # Erstellt 14.09.2019
 
 extends Sprite
-class_name Rectangle
+class_name GridNode
 
 var SIZE: int 
-var ASSETS = [preload("res://assets/racetrack/rectangle/karo.png")]
+var ASSETS = [preload("res://assets/racetrack/gridnode/karo.png")]
 var is_highlighted: bool = false
 
 func _init(x, y):

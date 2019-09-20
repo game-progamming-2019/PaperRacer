@@ -19,15 +19,15 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/Driver/Vehicle/Golf/Golf.gd"
 }, {
+"base": "Sprite",
+"class": "GridNode",
+"language": "GDScript",
+"path": "res://scenes/Racetrack/src/GridNode.gd"
+}, {
 "base": "Vehicle",
 "class": "Mercedes",
 "language": "GDScript",
 "path": "res://scenes/Driver/Vehicle/Mercedes/Mercedes.gd"
-}, {
-"base": "Sprite",
-"class": "Rectangle",
-"language": "GDScript",
-"path": "res://scenes/Racetrack/Rectangle/Rectangle.gd"
 }, {
 "base": "Node",
 "class": "Vehicle",
@@ -37,8 +37,8 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "Driver": "",
 "Golf": "",
+"GridNode": "",
 "Mercedes": "",
-"Rectangle": "",
 "Vehicle": ""
 }
 

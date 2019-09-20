@@ -8,7 +8,7 @@ var ROWS: int
 # Gibt an wie groß der Sprite ist
 var rectangle_size = 51
 
-var RECTANGLES = []
+var GRID = []
 
 # Baut das Level
 # 14.09 - Baut ein Feld der Größe ROWS, COLUMNS
@@ -19,42 +19,43 @@ func initialise(rows, columns):
 	self.COLUMNS = columns
 	
 	for x in range(self.ROWS):
-		RECTANGLES.append([])
+		GRID.append([])
 		for y in range(self.COLUMNS):
 			addRectangle(x, y)
 	
 func addRectangle(x, y):
-	var rect = Rectangle.new(x * rectangle_size + rectangle_size / 2, y * rectangle_size + rectangle_size / 2)
-	rect.set_name("Rectangle_" + str(x) + "_" + str(y))
+	var gridNode = GridNode.new(x * rectangle_size + rectangle_size / 2, y * rectangle_size + rectangle_size / 2)
+	gridNode.set_name("gridNode_" + str(x) + "_" + str(y))
 	
-	RECTANGLES[x].append(rect)
-	self.add_child(rect)
+	GRID[x].append(gridNode)
+	self.add_child(gridNode)
 	
 func getGridNodes(position: Vector2, selection):
 	var field = []
 	for vector in selection:
-		field.append(getRectangle(position.x + vector.x, position.y + vector.y))
+		if getGridNode(position.x + vector.x, position.y + vector.y) != null:
+			field.append(getGridNode(position.x + vector.x, position.y + vector.y))
 	return field
 	
 func highlight(selection):
-	for rectangle in selection:
-		rectangle.highlight()
+	for gridNode in selection:
+		gridNode.highlight()
 
 func unhighlight(selection):
-	for rectangle in selection:
-		rectangle.unhighlight()
+	for gridNode in selection:
+		gridNode.unhighlight()
 		
-func getRectangle(x,y):
+func getGridNode(x,y):
 	# Überprüfe überschreitungen der Feldgröße
-	if x < 0 || x >= COLUMNS - 1:
-		return
-	elif y < 0 || y >= ROWS - 1:
-		return
+	if x < 0 || x >= COLUMNS:
+		return null
+	elif y < 0 || y >= ROWS:
+		return null
 	else:
-		return RECTANGLES[x][y]
+		return GRID[x][y]
 		
 func getCoordinates(gridNode):
 	for x in range(self.ROWS):
 		for y in range(self.COLUMNS):
-			if gridNode == RECTANGLES[x][y]:
+			if gridNode == GRID[x][y]:
 				return(Vector2(x,y))

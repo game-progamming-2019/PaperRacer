@@ -3,8 +3,8 @@
 # Beschreibung: Skript zu Verwaltung der Regeln
 # TODO: Regelsatz wird in Settings gespeichert
 # TODO: Möglichkeit für mehrere Regelsätze schaffen
+
 func getPossibilities(previous_vector: Vector2):
-	print(previous_vector)
 	var Vector_Array = []
 	
 	# Acht-Nachbarn-Regel
