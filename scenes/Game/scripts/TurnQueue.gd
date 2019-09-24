@@ -2,6 +2,7 @@
 Autor: Christoph Brosch
 Erstellt: 17.09.2019
 Beschreibung: Skript kümmert sich um das rundenbasierte Verhalten
+Inspiration: https://github.com/GDquest/godot-open-rpg/blob/master/godot/combat/turn_queue/TurnQueue.gd
 """
 
 extends Node2D
@@ -41,10 +42,6 @@ func loop():
 
 func end():
 	active = false
-	
-func driver_turn():
-	yield(get_tree(), "idle_frame") # Behebt das erste Parameter ist kein Objekt fehler von yield()
-	yield(Gamemaster.action(active_driver), "completed")
 
 func next_driver():
 	var next_driver_index : int = (active_driver.get_index() + 1) % get_child_count()
