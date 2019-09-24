@@ -33,10 +33,13 @@ func _ready():
 	RULEMANAGER = Rules.new()
 	
 	addParticipant(Driver.new("Christoph", Mercedes.new(), false))
-	# addParticipant(Driver.new("Anja", Golf.new(), true))
+	addParticipant(Driver.new("Anja", Golf.new(), true))
 	initialiseDrivers()
 	TRANSCRIPTION = Transcription.new(Participants)
+	TURNMANAGER.initialise()
 	TURNMANAGER.start()
+	yield(get_tree().create_timer(10), "timeout")
+	TURNMANAGER.end()
 	
 func _input(event):
 	if event is InputEventMouseButton:
@@ -53,29 +56,34 @@ func addParticipant(driver):
 			
 func initialiseDrivers():
 	for driver in Participants:
-		driver.appendTo($Drivers)
-		
 		# Startposition
 		var rng = RandomNumberGenerator.new()
 		rng.randomize()
-		
 		driver.setPosition(rng.randi_range(0, Settings.COLUMNS - 1), rng.randi_range(0, Settings.ROWS - 1))
-		# driver.setPosition(4, 4)
+		
 # Hauptfunktion zuständig für die Aktion die ein Fahrer vornimmt
 func action(driver): 
+	yield(get_tree(), "idle_frame") # Behebt das erste Parameter ist kein Objekt fehler von yield()
 	if Settings.DEBUG:
 		print(driver.NAME + "'s Aktion")
 		
 	var current_position = driver.getPosition()
 	var target_position: Vector2
-	print("Previous Vector: " + str(TRANSCRIPTION.getPreviousVector(driver)))
-	var vector_selection = RULEMANAGER.getPossibilities(TRANSCRIPTION.getPreviousVector(driver))
-	print("Possible Vectors: " + str(vector_selection))
+	if Settings.DEBUG:
+		print("Previous Vector: " + str(TRANSCRIPTION.getPreviousVector(driver)))
+	var vector_selection = RULEMANAGER.getPossibieVectors(TRANSCRIPTION.getPreviousVector(driver))
+	if Settings.DEBUG:
+		print("Possible Vectors: " + str(vector_selection))
 	var gridNode_selection = $Racetrack.getGridNodes(driver.getPosition(), vector_selection)
-	print("Possible GridNodes: " + str(gridNode_selection))
-	
+	if Settings.DEBUG:
+		print("Possible GridNodes: " + str(gridNode_selection))
+
+ 	# Falls der Fahrer sich gegen eine Wand fährt darf er anhalten in der Runde.
+	if len(gridNode_selection) == 0:
+		vector_selection = [Vector2(0,0)]
+		gridNode_selection = $Racetrack.getGridNodes(driver.getPosition(), vector_selection)
+		
 	if driver.KI:
-		# Provisorisch
 		# "KI" wird auf ein zufälliges erlaubtes Feld gesetzt
 		var rng = RandomNumberGenerator.new()
 		rng.randomize()
@@ -87,22 +95,14 @@ func action(driver):
 		$Racetrack.highlight(gridNode_selection)
 		# Highlight und Unhighlight wird nur für den Spieler gemacht.
 		yield(self, "mouse_click")
-		print("1")
-		if !(clicked_node in gridNode_selection):
-			action(driver)
-		else:
-			target_position = $Racetrack.getCoordinates(clicked_node)
-			$Racetrack.unhighlight(gridNode_selection)
-	print("2")
+		while !(clicked_node in gridNode_selection):
+			yield(self, "mouse_click")
+		target_position = $Racetrack.getCoordinates(clicked_node)
+		$Racetrack.unhighlight(gridNode_selection)
+			
 	driver.setPosition(target_position.x, target_position.y)
 	# Mathe is hier ggf. noch falsch
 	TRANSCRIPTION.recordMovement(driver,-(current_position - target_position))
-	
-	print("3")
-	# Es hat zu Problemen geführt wenn das Signal früher gesetzt wird,
-	# da Turn und Transcription "zeitgleich" auf Global.Turn zugreifen.
-	emit_signal("action_finished")
-	print("4")
 	
 	# func _init()
 	#	Initialisiert Racetrack

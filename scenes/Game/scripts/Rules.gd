@@ -4,7 +4,7 @@
 # TODO: Regelsatz wird in Settings gespeichert
 # TODO: Möglichkeit für mehrere Regelsätze schaffen
 
-func getPossibilities(previous_vector: Vector2):
+func getPossibieVectors(previous_vector: Vector2):
 	var Vector_Array = []
 	
 	# Acht-Nachbarn-Regel

@@ -13,7 +13,6 @@ func recordMovement(driver: Driver, movement: Vector2) -> void:
 	if not Memory.Rounds.has(Global.getRound()):
 		Memory.Rounds[Global.getRound()] = {}
 	Memory.Rounds[Global.getRound()][driver.getID()] = movement
-	# print("Ich habe Erfolgreich Informationen über die " + str(Global.getRound()) + "ste Runde gespeichert") 
 
 func getPreviousVector(driver):
 	if Global.getRound() == 1:

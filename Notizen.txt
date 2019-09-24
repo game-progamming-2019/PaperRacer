@@ -49,4 +49,50 @@ Nachricht
 Stuck in Runde: 1
 4
 Ende der 1 Runde
- 
+
+Aktiver Fahrer: Christoph
+Vor Yield() Mouse Click
+Vor Yield() Action Finished für Fahrer: Christoph, 1569311358073
+Hinter Yield() Mouse Click
+Ich habe Erfolgreich Informationen über die 1ste Runde von Christoph gespeichert
+Vor Emit_Signal() Action Finished
+Hinter Yield() Action Finished
+
+Aktiver Fahrer: Anja
+Ich habe Erfolgreich Informationen über die 1ste Runde von Anja gespeichert
+Vor Emit_Signal() Action Finished
+Hinter Yield() Action Finished
+
+Increment Turn
+
+Aktiver Fahrer: Christoph
+Vor Yield() Mouse Click
+Vor Yield() Action Finished für Fahrer: Christoph, 1569311360229
+"Ding Dong Dell"
+Vor Yield() Action Finished für Fahrer: Christoph, 1569311360236
+"Ding Dong Dell"
+Hinter Yield() Mouse Click
+Ich habe Erfolgreich Informationen über die 2ste Runde von Christoph gespeichert
+Vor Emit_Signal() Action Finished
+Hinter Yield() Action Finished
+
+Aktiver Fahrer: Anja
+Ich habe Erfolgreich Informationen über die 2ste Runde von Anja gespeichert
+Vor Emit_Signal() Action Finished
+Hinter Yield() Action Finished
+
+Increment Turn
+
+Aktiver Fahrer: Christoph
+Vor Yield() Mouse Click
+Vor Yield() Action Finished für Fahrer: Christoph, 1569311361887
+Hinter Yield() Action Finished
+
+Aktiver Fahrer: Anja
+Ich habe Erfolgreich Informationen über die 3ste Runde von Anja gespeichert
+Vor Emit_Signal() Action Finished
+Hinter Yield() Action Finished
+
+Increment Turn
+
+Aktiver Fahrer: Christoph
