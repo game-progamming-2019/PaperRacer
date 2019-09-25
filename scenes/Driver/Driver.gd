@@ -30,9 +30,6 @@ func setPosition(x, y):
 func getPosition():
 	return _position
 	
-func appendTo(node):
-	node.add_child(self)
-
 func getID():
 	return ID
 

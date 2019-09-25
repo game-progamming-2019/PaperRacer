@@ -1,6 +1,6 @@
 extends Node
 
-var DEBUG = false
+var DEBUG = true
 var RECTANGLE_SIZE: int = 51
 var ROWS: int
 var COLUMNS: int

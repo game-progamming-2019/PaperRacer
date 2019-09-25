@@ -16,8 +16,6 @@ current = true
 zoom = Vector2( 2, 2 )
 script = ExtResource( 3 )
 
-[node name="Drivers" type="Node2D" parent="."]
-
 [node name="Ray" type="RayCast2D" parent="."]
 enabled = true
 collide_with_areas = true
