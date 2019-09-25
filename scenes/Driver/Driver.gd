@@ -12,6 +12,7 @@ var KI: bool
 var _position: Vector2
 
 func _init(name, vehicle, ki):
+	self.z_index = 2
 	self.NAME = name
 	self.VEHICLE = vehicle
 	self.KI = ki

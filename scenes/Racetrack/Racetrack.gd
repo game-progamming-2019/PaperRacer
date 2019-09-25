@@ -3,6 +3,8 @@
 # Aktualisiert 15.09.2019
 extends Node2D
 
+onready var GridNode = load("res://scenes/Racetrack/src/GridNode/GridNode.tscn")
+
 var COLUMNS: int
 var ROWS: int
 # Gibt an wie groß der Sprite ist
@@ -24,7 +26,8 @@ func initialise(rows, columns):
 			addRectangle(x, y)
 	
 func addRectangle(x, y):
-	var gridNode = GridNode.new(x * rectangle_size + rectangle_size / 2, y * rectangle_size + rectangle_size / 2)
+	var gridNode = GridNode.instance()
+	gridNode.initialise(x * rectangle_size + rectangle_size / 2, y * rectangle_size + rectangle_size / 2)
 	gridNode.set_name("gridNode_" + str(x) + "_" + str(y))
 	
 	GRID[x].append(gridNode)

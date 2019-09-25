@@ -7,9 +7,9 @@ extends RayCast2D
 
 func _process(delta):
 	self.position = get_global_mouse_position()
+	cast_to = Vector2.ZERO
 	pass
 
 func castRayAt(destination: Vector2):
-	cast_to = destination
 	return(get_collider())
 	

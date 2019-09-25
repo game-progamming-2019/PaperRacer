@@ -4,7 +4,7 @@ extends Node2D
 
 # Skript das sich nur um das rundenbasierte Verhalten kümmert
 # Erzeugt einen Thread
-const Turn = preload("res://scenes/Game/scripts/Turn.gd")
+const Turn = preload("res://scenes/Game/scripts/TurnQueue.gd")
 # Kümmert sich um die Regeln des Spiels
 const Rules = preload("res://scenes/Game/scripts/Rules.gd")
 # Schreibt eine Abschrift des Spielverlaufs und liefert Informationen zu vorherigen Zügen
@@ -38,16 +38,21 @@ func _ready():
 	TRANSCRIPTION = Transcription.new(Participants)
 	TURNMANAGER.initialise()
 	TURNMANAGER.start()
-	yield(get_tree().create_timer(10), "timeout")
-	TURNMANAGER.end()
+	"""
+		# Zeitabhängig
+		yield(get_tree().create_timer(10), "timeout")
+		TURNMANAGER.end()
+	"""
 	
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
 			if !event.is_pressed():
 				# NULL FEHLER
-				clicked_node = $Ray.castRayAt(get_global_mouse_position()).get_parent()
-				emit_signal("mouse_click")
+				if $Ray.castRayAt(get_global_mouse_position()) != null:
+					clicked_node = $Ray.castRayAt(get_global_mouse_position()).get_parent()
+					print(clicked_node)
+					emit_signal("mouse_click")
 			
 func addParticipant(driver):
 	# Überprüfe ob es sich um einen validen Driver handelt und ob das Rennen schon gestartet ist.
