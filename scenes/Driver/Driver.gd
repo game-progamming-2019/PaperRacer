@@ -17,6 +17,7 @@ func _init(name, vehicle, ki):
 	self.VEHICLE = vehicle
 	self.KI = ki
 	self.set_texture(VEHICLE.getTexture())
+	self.scale = Vector2(0.5, 0.5)
 
 func getName():
 	return self.NAME
@@ -26,7 +27,7 @@ func getVehicle():
 	
 func setPosition(x, y):
 	self._position = Vector2(x,y)
-	self.position = Vector2(x * Settings.RECTANGLE_SIZE + Settings.RECTANGLE_SIZE / 2, y * Settings.RECTANGLE_SIZE + Settings.RECTANGLE_SIZE / 2)
+	self.position = Vector2(x * Global.get_rectangle_size() + Global.get_rectangle_size() / 2, y * Global.get_rectangle_size() + Global.get_rectangle_size() / 2)
 
 func getPosition():
 	return _position

@@ -25,7 +25,7 @@ var clicked_node: Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
-	$Racetrack.initialise(10, 10)
+	$Racetrack.initialise(59, 43)
 	$Camera.initialise()
 	
 	# Call by Reference, Participants vergibt nur eine Referenz auf sich.
@@ -33,7 +33,7 @@ func _ready():
 	RULEMANAGER = Rules.new()
 	
 	addParticipant(Driver.new("Christoph", Mercedes.new(), false))
-	addParticipant(Driver.new("Anja", Golf.new(), true))
+	# addParticipant(Driver.new("Anja", Golf.new(), true))
 	initialiseDrivers()
 	TRANSCRIPTION = Transcription.new(Participants)
 	TURNMANAGER.initialise()
@@ -43,6 +43,7 @@ func _ready():
 		yield(get_tree().create_timer(10), "timeout")
 		TURNMANAGER.end()
 	"""
+	$Racetrack.highlight_all()
 	
 func _input(event):
 	if event is InputEventMouseButton:

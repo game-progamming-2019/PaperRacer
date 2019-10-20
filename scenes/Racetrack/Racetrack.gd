@@ -4,17 +4,16 @@
 extends Node2D
 
 onready var GridNode = load("res://scenes/Racetrack/src/GridNode/GridNode.tscn")
+onready var Map = $Map
 
 var COLUMNS: int
 var ROWS: int
-# Gibt an wie groß der Sprite ist
-var rectangle_size = 51
-
 var GRID = []
 
 # Baut das Level
 # 14.09 - Baut ein Feld der Größe ROWS, COLUMNS
 func initialise(rows, columns):
+	Map.set_texture("res://assets/racetrack/maps/map_1.png")
 	Settings.setRacetrackSize(rows, columns)
 	
 	self.ROWS = rows
@@ -30,7 +29,7 @@ func initialise(rows, columns):
 	
 func addRectangle(trespassable, x, y):
 	var gridNode = GridNode.instance()
-	gridNode.initialise(trespassable, x * rectangle_size + rectangle_size / 2, y * rectangle_size + rectangle_size / 2)
+	gridNode.initialise(trespassable, x * Global.get_rectangle_size() + Global.get_rectangle_size() / 2, y * Global.get_rectangle_size() + Global.get_rectangle_size() / 2)
 	gridNode.set_name("gridNode_" + str(x) + "_" + str(y))
 	
 	GRID[x].append(gridNode)
@@ -54,9 +53,9 @@ func unhighlight(selection):
 		
 func getGridNode(x,y):
 	# Überprüfe überschreitungen der Feldgröße
-	if x < 0 || x >= COLUMNS:
+	if x < 0 || x >= ROWS:
 		return null
-	elif y < 0 || y >= ROWS:
+	elif y < 0 || y >= COLUMNS:
 		return null
 	else:
 		return GRID[x][y]
@@ -66,3 +65,8 @@ func getCoordinates(gridNode):
 		for y in range(self.COLUMNS):
 			if gridNode == GRID[x][y]:
 				return(Vector2(x,y))
+
+func highlight_all():
+	for x in range(self.ROWS):
+		for y in range(self.COLUMNS):
+			GRID[x][y].highlight()

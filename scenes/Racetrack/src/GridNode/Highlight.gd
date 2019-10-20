@@ -4,7 +4,7 @@ onready var _visible: bool = false
 	
 func _draw():
 	if _visible:
-		var radius = Settings.RECTANGLE_SIZE / 4 
+		var radius = Global.get_rectangle_size() / 8
 		var color = Color("#0088FF")
 		draw_circle_arc_poly(position, radius, 0, 360, color)
 
