@@ -2,7 +2,7 @@ extends Node2D
 
 onready var _visible: bool = false
 	
- func _draw():
+func _draw():
 	if _visible:
 		var radius = Settings.RECTANGLE_SIZE / 4 
 		var color = Color("#0088FF")
