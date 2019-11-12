@@ -4,6 +4,8 @@
 extends Node2D
 
 var GRID = []
+var StartPositionTiles = [];
+var StartFinishTiles = [];
 
 # Baut das Level
 # 14.09 - Baut ein Feld der Größe ROWS, COLUMNS
@@ -41,7 +43,14 @@ func getCoordinates(gridNode):
 			if gridNode == GRID[x][y]:
 				return(Vector2(x,y))
 
+func getStartPosition(index: int):
+	for tile in StartPositionTiles:
+		if tile.getIndex() == index:
+			return getCoordinates(tile);
+
 func highlight_all():
 	for x in range(Global.get_row_count()):
 		for y in range(Global.get_column_count()):
 			GRID[x][y].highlight()
+
+	

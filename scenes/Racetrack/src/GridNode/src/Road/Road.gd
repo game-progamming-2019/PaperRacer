@@ -5,7 +5,13 @@ var area
 var collisionshape
 var Highlight = preload("res://scenes/Racetrack/src/GridNode/src/Road/Highlight.tscn").instance()
 
-func _init(x, y).(true, x, y):
+var isFinishLine: bool = false;
+var isStartPosition: bool = false
+
+
+func _init(x, y, isFinishLine, isStartPosition).(true, x, y):
+	self.isFinishLine = isFinishLine;
+	self.isStartPosition = isStartPosition;
 	area = Area2D.new()
 	self.add_child(area)
 	collisionshape = CollisionShape2D.new()

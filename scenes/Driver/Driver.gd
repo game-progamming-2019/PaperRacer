@@ -10,11 +10,13 @@ var NAME: String
 var VEHICLE: Vehicle
 var KI: bool
 var _position: Vector2
+var startIndex: int
 
-func _init(name, vehicle, ki):
+func _init(name, vehicle, startIndex, ki):
 	self.z_index = 2
 	self.NAME = name
 	self.VEHICLE = vehicle
+	self.startIndex = startIndex
 	self.KI = ki
 	self.set_texture(VEHICLE.getTexture())
 	self.scale = Vector2(0.5, 0.5)
@@ -30,10 +32,13 @@ func setPosition(x, y):
 	self.position = Vector2(x * Global.get_rectangle_size() + Global.get_rectangle_size() / 2, y * Global.get_rectangle_size() + Global.get_rectangle_size() / 2)
 
 func getPosition():
-	return _position
+	return self._position;
 	
 func getID():
-	return ID
+	return ID;
 
 func setID(new_id):
-	print("Setting the ID is not allowed")
+	print("Setting the ID is not allowed");
+
+func getStartIndex():
+	return self.startIndex;

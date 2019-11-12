@@ -64,6 +64,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/Racetrack/src/GridNode/src/Road/StartFinish/StartFinish.gd"
 }, {
+"base": "Road",
+"class": "StartPosition",
+"language": "GDScript",
+"path": "res://scenes/Racetrack/src/GridNode/src/Road/StartPosition/StartPosition.gd"
+}, {
 "base": "Decoration",
 "class": "Static",
 "language": "GDScript",
@@ -91,6 +96,7 @@ _global_script_class_icons={
 "PaperTile": "",
 "Road": "",
 "StartFinish": "",
+"StartPosition": "",
 "Static": "",
 "Street": "",
 "Vehicle": ""

@@ -32,18 +32,13 @@ func _ready():
 	TURNMANAGER = Turn.new(self, $Racetrack, Participants)
 	RULEMANAGER = Rules.new()
 	
-	addParticipant(Driver.new("Christoph", Mercedes.new(), false))
+	addParticipant(Driver.new("Christoph", Mercedes.new(), 1, false));
+	addParticipant(Driver.new("Christoph", Mercedes.new(), 2, false));
 	# addParticipant(Driver.new("Anja", Golf.new(), true))
 	initialiseDrivers()
 	TRANSCRIPTION = Transcription.new(Participants)
 	TURNMANAGER.initialise()
 	TURNMANAGER.start()
-	"""
-		# Zeitabhängig
-		yield(get_tree().create_timer(10), "timeout")
-		TURNMANAGER.end()
-	"""
-	# $Racetrack.highlight_all()
 	
 func _input(event):
 	if event is InputEventMouseButton:
@@ -63,10 +58,7 @@ func addParticipant(driver):
 func initialiseDrivers():
 	for driver in Participants:
 		# Startposition
-		var rng = RandomNumberGenerator.new()
-		rng.randomize()
-		driver.setPosition(4, 4)
-		# driver.setPosition(rng.randi_range(0, Settings.COLUMNS - 1), rng.randi_range(0, Settings.ROWS - 1))
+		driver.setPosition($Racetrack.getStartPosition(driver.getStartIndex()).x, $Racetrack.getStartPosition(driver.getStartIndex()).y);
 		
 # Hauptfunktion zuständig für die Aktion die ein Fahrer vornimmt
 func action(driver): 
