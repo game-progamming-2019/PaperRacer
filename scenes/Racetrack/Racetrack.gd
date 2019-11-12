@@ -3,37 +3,12 @@
 # Aktualisiert 15.09.2019
 extends Node2D
 
-onready var GridNode = load("res://scenes/Racetrack/src/GridNode/GridNode.tscn")
-onready var Map = $Map
-
-var COLUMNS: int
-var ROWS: int
 var GRID = []
 
 # Baut das Level
 # 14.09 - Baut ein Feld der Größe ROWS, COLUMNS
-func initialise(rows, columns):
-	Map.set_texture("res://assets/racetrack/maps/map_1.png")
-	Settings.setRacetrackSize(rows, columns)
-	
-	self.ROWS = rows
-	self.COLUMNS = columns
-	
-	for x in range(self.ROWS):
-		GRID.append([])
-		for y in range(self.COLUMNS):
-			if (x == 5 and y == 5):
-				addRectangle(false, x, y)
-			else:
-				addRectangle(true, x, y)
-	
-func addRectangle(trespassable, x, y):
-	var gridNode = GridNode.instance()
-	gridNode.initialise(trespassable, x * Global.get_rectangle_size() + Global.get_rectangle_size() / 2, y * Global.get_rectangle_size() + Global.get_rectangle_size() / 2)
-	gridNode.set_name("gridNode_" + str(x) + "_" + str(y))
-	
-	GRID[x].append(gridNode)
-	self.add_child(gridNode)
+func initialise(map_path):
+	Generator.build(self, map_path)
 	
 func getGridNodes(position: Vector2, selection):
 	var field = []
@@ -53,20 +28,20 @@ func unhighlight(selection):
 		
 func getGridNode(x,y):
 	# Überprüfe überschreitungen der Feldgröße
-	if x < 0 || x >= ROWS:
+	if x < 0 || x >= Global.get_row_count():
 		return null
-	elif y < 0 || y >= COLUMNS:
+	elif y < 0 || y >= Global.get_column_count():
 		return null
 	else:
 		return GRID[x][y]
 		
 func getCoordinates(gridNode):
-	for x in range(self.ROWS):
-		for y in range(self.COLUMNS):
+	for x in range(Global.get_row_count()):
+		for y in range(Global.get_column_count()):
 			if gridNode == GRID[x][y]:
 				return(Vector2(x,y))
 
 func highlight_all():
-	for x in range(self.ROWS):
-		for y in range(self.COLUMNS):
+	for x in range(Global.get_row_count()):
+		for y in range(Global.get_column_count()):
 			GRID[x][y].highlight()

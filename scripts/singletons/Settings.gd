@@ -1,8 +1,6 @@
 extends Node
 
 var DEBUG = false
-var ROWS: int
-var COLUMNS: int
 var RULESET: String = "Acht-Nachbar-Regel"
 
 func setRacetrackSize(rows, columns):

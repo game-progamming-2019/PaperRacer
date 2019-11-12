@@ -96,3 +96,22 @@ Hinter Yield() Action Finished
 Increment Turn
 
 Aktiver Fahrer: Christoph
+
+	for x in range(Global.get_rows()):
+		GRID.append([])
+		for y in range(Global.get_columns()):
+			if (x == 5 and y == 5):
+				addRectangle(x, y)
+			else:
+				addRectangle(x, y)
+	
+func addRectangle(x, y):
+	var road
+	if x == 5 and y == 0:
+		road = Grass.new(x, y)
+	else:
+		road = Street.new(x, y)
+	# road.initialise(x * Global.get_rectangle_size() + Global.get_rectangle_size() / 2, y * Global.get_rectangle_size() + Global.get_rectangle_size() / 2)
+	road.set_name("gridNode_" + str(x) + "_" + str(y))
+	GRID[x].append(road)
+	self.add_child(road)

@@ -10,7 +10,7 @@ var move_camera = false
 var start_position = Vector2.ZERO
 
 func initialise():
-	self.position = Vector2((Settings.ROWS / 2) * Global.get_rectangle_size(), (Settings.COLUMNS / 2) * Global.get_rectangle_size())
+	self.position = Vector2((Global.get_row_count() / 2) * Global.get_rectangle_size(), (Global.get_column_count() / 2) * Global.get_rectangle_size())
 	
 func _input(event):
 	if event.is_action_pressed("ui_drag"):

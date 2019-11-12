@@ -8,7 +8,9 @@ extends Node
 var ID_counter = 0 setget setID, getUniqueID
 
 var Round: int setget setRound, getRound
-var RECTANGLE_SIZE: float = 50.6
+var ROWS: int
+var COLUMNS: int
+var RECTANGLE_SIZE: float = 51
 
 func setID(garbage):
 	print("Manually setting the ID_counter value is not allowed")
@@ -28,6 +30,12 @@ func incrementTurn():
 
 func get_rectangle_size():
 	return self.RECTANGLE_SIZE;
+
+func get_row_count():
+	return self.ROWS
+
+func get_column_count():
+	return self.COLUMNS
 	
 #read only flag please
 

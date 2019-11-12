@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/map_1.png-be70c35c62aea48a919acd174ec5c940.stex"
+path="res://.import/gras.png-e6d291ee248bed582d2b4e6c04af1fb7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/racetrack/maps/map_1.png"
-dest_files=[ "res://.import/map_1.png-be70c35c62aea48a919acd174ec5c940.stex" ]
+source_file="res://assets/racetrack/gridnode/gras.png"
+dest_files=[ "res://.import/gras.png-e6d291ee248bed582d2b4e6c04af1fb7.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

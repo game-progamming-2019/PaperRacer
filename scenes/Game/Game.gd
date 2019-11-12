@@ -25,7 +25,7 @@ var clicked_node: Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
-	$Racetrack.initialise(59, 43)
+	$Racetrack.initialise("res://assets/maps/map_1.json")
 	$Camera.initialise()
 	
 	# Call by Reference, Participants vergibt nur eine Referenz auf sich.
@@ -43,7 +43,7 @@ func _ready():
 		yield(get_tree().create_timer(10), "timeout")
 		TURNMANAGER.end()
 	"""
-	$Racetrack.highlight_all()
+	# $Racetrack.highlight_all()
 	
 func _input(event):
 	if event is InputEventMouseButton:
@@ -65,7 +65,8 @@ func initialiseDrivers():
 		# Startposition
 		var rng = RandomNumberGenerator.new()
 		rng.randomize()
-		driver.setPosition(rng.randi_range(0, Settings.COLUMNS - 1), rng.randi_range(0, Settings.ROWS - 1))
+		driver.setPosition(4, 4)
+		# driver.setPosition(rng.randi_range(0, Settings.COLUMNS - 1), rng.randi_range(0, Settings.ROWS - 1))
 		
 # Hauptfunktion zuständig für die Aktion die ein Fahrer vornimmt
 func action(driver): 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/karo.png-ba016e4397b569dcea67c2e9e7b6a3b5.stex"
+path="res://.import/straße.png-a7908bac5fe7f5b29a9488dbb892e1f3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/racetrack/gridnode/karo.png"
-dest_files=[ "res://.import/karo.png-ba016e4397b569dcea67c2e9e7b6a3b5.stex" ]
+source_file="res://assets/racetrack/gridnode/straße.png"
+dest_files=[ "res://.import/straße.png-a7908bac5fe7f5b29a9488dbb892e1f3.stex" ]
 
 [params]
 
@@ -24,11 +24,11 @@ flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
-process/fix_alpha_border=true
+process/fix_alpha_border=false
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true
-svg/scale=0.5
+svg/scale=1.0

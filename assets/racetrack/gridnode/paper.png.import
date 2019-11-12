@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Karo_Original.png-63de1b43db3f6e380f5e0528674843aa.stex"
+path="res://.import/paper.png-90751a3f94d4941236912c4c5253eeaf.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/racetrack/gridnode/Karo_Original.png"
-dest_files=[ "res://.import/Karo_Original.png-63de1b43db3f6e380f5e0528674843aa.stex" ]
+source_file="res://assets/racetrack/gridnode/paper.png"
+dest_files=[ "res://.import/paper.png-90751a3f94d4941236912c4c5253eeaf.stex" ]
 
 [params]
 
@@ -24,7 +24,7 @@ flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
-process/fix_alpha_border=true
+process/fix_alpha_border=false
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
