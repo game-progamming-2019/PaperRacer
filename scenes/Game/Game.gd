@@ -39,6 +39,7 @@ func _ready():
 	TRANSCRIPTION = Transcription.new(Participants)
 	TURNMANAGER.initialise()
 	TURNMANAGER.start()
+	$HUD.init();
 	
 func _input(event):
 	if event is InputEventMouseButton:
@@ -98,10 +99,44 @@ func action(driver):
 			yield(self, "mouse_click")
 		target_position = $Racetrack.getCoordinates(clicked_node)
 		$Racetrack.unhighlight(gridNode_selection)
+	
+	# Überprüfe ob die Ziellinie überfahren wurde.
+	var direction = determineDirection(current_position, target_position);
+	var gridNodes = $Racetrack.getGridNodesInBetween(current_position, target_position);
+	gridNodes.append($Racetrack.getGridNode(target_position.x, target_position.y));
+	
+	for node in gridNodes:
+		if node is StartFinish:
+			if node.getDirection() in direction:
+				driver.increaseLap();
+			else:
+				driver.decreaseLap();
 			
+	
+	# Setze die Position des Spielers auf den neuen Platz
 	driver.setPosition(target_position.x, target_position.y)
 	# Mathe is hier ggf. noch falsch
 	TRANSCRIPTION.recordMovement(driver,-(current_position - target_position))
+	
+func determineDirection(current, target):
+	var vector = target - current;
+	var direction = [];
+	
+	if vector.x == 0:
+		pass;
+	elif vector.x > 0:
+		direction.append(Vector2.RIGHT);
+	elif vector.x < 0:
+		direction.append(Vector2.LEFT);
+	
+	if vector.y == 0:
+		pass;
+	elif vector.y > 0:
+		direction.append(Vector2.DOWN);
+	elif vector.y < 0:
+		direction.append(Vector2.UP);
+	
+	return direction;
 	
 	# func _init()
 	#	Initialisiert Racetrack

@@ -11,6 +11,7 @@ var VEHICLE: Vehicle
 var KI: bool
 var _position: Vector2
 var startIndex: int
+var lap: int = 0;
 
 func _init(name, vehicle, startIndex, ki):
 	self.z_index = 2
@@ -42,3 +43,12 @@ func setID(new_id):
 
 func getStartIndex():
 	return self.startIndex;
+
+func getLap():
+	return lap;
+
+func increaseLap():
+	lap += 1;
+
+func decreaseLap():
+	lap -=1;

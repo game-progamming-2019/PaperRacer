@@ -5,6 +5,8 @@ Beschreibung: Skript kümmert sich um das rundenbasierte Verhalten
 Inspiration: https://github.com/GDquest/godot-open-rpg/blob/master/godot/combat/turn_queue/TurnQueue.gd
 """
 
+signal next_driver
+
 extends Node2D
 var Gamemaster: Node2D
 var Racetrack: Node2D
@@ -46,3 +48,4 @@ func end():
 func next_driver():
 	var next_driver_index : int = (active_driver.get_index() + 1) % get_child_count()
 	active_driver = get_child(next_driver_index)
+	emit_signal("next_driver", active_driver);

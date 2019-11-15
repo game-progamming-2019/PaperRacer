@@ -36,6 +36,24 @@ func getGridNode(x,y):
 		return null
 	else:
 		return GRID[x][y]
+
+func getGridNodesInBetween(current, target):
+	var gridNodes = [];
+	while current.x != target.x:
+		if current.x < target.x:
+			current.x += 1;
+		elif current.x > target.x:
+			current.x -= 1;
+		if current != target:
+			gridNodes.append(getGridNode(current.x, current.y));
+	while current.y != target.y:
+		if current.y < target.y:
+			current.y += 1;
+		elif current.y > target.y:
+			current.y -= 1;
+		if current != target:
+			gridNodes.append(getGridNode(current.x, current.y));
+	return gridNodes;
 		
 func getCoordinates(gridNode):
 	for x in range(Global.get_row_count()):
