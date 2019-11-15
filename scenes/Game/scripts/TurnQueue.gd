@@ -15,6 +15,9 @@ var Participants: Array
 # Initializes a variable once the Node the script is attached to and its children are part of the scene tree.
 onready var active_driver: Driver
 
+func getCurrentDriver():
+	return active_driver;
+	
 var active: bool = false
 
 func _init(gamemaster, racetrack, participants):
@@ -48,4 +51,7 @@ func end():
 func next_driver():
 	var next_driver_index : int = (active_driver.get_index() + 1) % get_child_count()
 	active_driver = get_child(next_driver_index)
+	if active_driver.isDone():
+		self.move_child(active_driver, get_child_count());
+		next_driver();
 	emit_signal("next_driver", active_driver);

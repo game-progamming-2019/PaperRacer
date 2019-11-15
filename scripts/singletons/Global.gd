@@ -10,7 +10,10 @@ var ID_counter = 0 setget setID, getUniqueID
 var Round: int setget setRound, getRound
 var ROWS: int
 var COLUMNS: int
-var RECTANGLE_SIZE: float = 51
+var RECTANGLE_SIZE: float = 31
+
+# Initialisier mit -1 um sicherzustellen das der Wert noch nicht überschrieben wurde
+var LAPCOUNT: int = -1 setget setLapcount, getLapcount
 
 func setID(garbage):
 	print("Manually setting the ID_counter value is not allowed")
@@ -18,9 +21,17 @@ func setID(garbage):
 func getUniqueID():
 	ID_counter += 1
 	return ID_counter
-
+func setLapcount(lapcount: int):
+	if LAPCOUNT == -1:
+		LAPCOUNT = lapcount;
+	else:
+		print("Manually changing the Lapcount value is not allowed");
+	
+func getLapcount():
+	return LAPCOUNT;
+	
 func setRound(garbage):
-	print("Manually setting the Round value is not allowed")
+	print("Manually setting the Round value is not allowed");
 
 func getRound():
 	return Round

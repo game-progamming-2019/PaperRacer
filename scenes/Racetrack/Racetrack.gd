@@ -17,7 +17,8 @@ func getGridNodes(position: Vector2, selection):
 	for vector in selection:
 		if getGridNode(position.x + vector.x, position.y + vector.y) != null:
 			if getGridNode(position.x + vector.x, position.y + vector.y).is_trespassable():
-				field.append(getGridNode(position.x + vector.x, position.y + vector.y))
+				if !getGridNode(position.x + vector.x, position.y + vector.y).hasDriverOnIt:
+					field.append(getGridNode(position.x + vector.x, position.y + vector.y))
 	return field
 	
 func highlight(selection):

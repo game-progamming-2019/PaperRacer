@@ -2,6 +2,7 @@
 # Erstellt 14.09.2019
 extends Node2D
 
+signal race_finished
 # Skript das sich nur um das rundenbasierte Verhalten kümmert
 # Erzeugt einen Thread
 const Turn = preload("res://scenes/Game/scripts/TurnQueue.gd")
@@ -24,6 +25,8 @@ var clicked_node: Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# Wird vom Spieler in den Optionen festgelegt.
+	Global.setLapcount(1);
 	
 	$Racetrack.initialise("res://assets/maps/map_1.json")
 	$Camera.initialise()
@@ -68,6 +71,7 @@ func action(driver):
 		print(driver.NAME + "'s Aktion")
 		
 	var current_position = driver.getPosition()
+	$Racetrack.getGridNode(current_position.x, current_position.y).hasDriverOnIt = false;
 	var target_position: Vector2
 	if Settings.DEBUG:
 		print("Previous Vector: " + str(TRANSCRIPTION.getPreviousVector(driver)))
@@ -115,8 +119,17 @@ func action(driver):
 	
 	# Setze die Position des Spielers auf den neuen Platz
 	driver.setPosition(target_position.x, target_position.y)
+	$Racetrack.getGridNode(target_position.x, target_position.y).hasDriverOnIt = true;
 	# Mathe is hier ggf. noch falsch
 	TRANSCRIPTION.recordMovement(driver,-(current_position - target_position))
+	
+	# Überprüfe ob der Spieler alle Runden gefahren ist.
+	if (driver.getLap() > Global.getLapcount()):
+		# Entferne Spieler aus der Fahrerliste
+		driver.done();
+		if isEveryDriverDone():
+			finished()
+			
 	
 func determineDirection(current, target):
 	var vector = target - current;
@@ -137,7 +150,15 @@ func determineDirection(current, target):
 		direction.append(Vector2.UP);
 	
 	return direction;
-	
+
+func isEveryDriverDone():
+	for driver in self.Participants:
+		if !driver.isDone():
+			return false;
+	return true;
+
+func finished():
+	emit_signal("race_finished");
 	# func _init()
 	#	Initialisiert Racetrack
 	#   Initialisiert Camera

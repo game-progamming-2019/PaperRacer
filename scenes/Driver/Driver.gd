@@ -12,6 +12,7 @@ var KI: bool
 var _position: Vector2
 var startIndex: int
 var lap: int = 0;
+var done: bool = false;
 
 func _init(name, vehicle, startIndex, ki):
 	self.z_index = 2
@@ -52,3 +53,9 @@ func increaseLap():
 
 func decreaseLap():
 	lap -=1;
+
+func isDone():
+	return self.done;
+	
+func done():
+	self.done = true;
