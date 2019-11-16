@@ -4,15 +4,16 @@
 extends Node2D
 
 var GRID = []
-var StartPositionTiles = [];
-var StartFinishTiles = [];
+var StartPositionNodes = [];
+var StartFinishNodes = [];
 
 # Baut das Level
 # 14.09 - Baut ein Feld der Größe ROWS, COLUMNS
 func initialise(map_path):
 	Generator.build(self, map_path)
-	
-func getGridNodes(position: Vector2, selection):
+
+# Irreführender Name, 
+func getChoosableGridNodes(position: Vector2, selection):
 	var field = []
 	for vector in selection:
 		if getGridNode(position.x + vector.x, position.y + vector.y) != null:
@@ -63,10 +64,11 @@ func getCoordinates(gridNode):
 				return(Vector2(x,y))
 
 func getStartPosition(index: int):
-	for tile in StartPositionTiles:
+	for tile in StartPositionNodes:
 		if tile.getIndex() == index:
 			return getCoordinates(tile);
 
+# Wird nur für Debug zwecke verwendet.
 func highlight_all():
 	for x in range(Global.get_row_count()):
 		for y in range(Global.get_column_count()):

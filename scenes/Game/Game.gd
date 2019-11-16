@@ -2,7 +2,6 @@
 # Erstellt 14.09.2019
 extends Node2D
 
-signal race_finished
 # Skript das sich nur um das rundenbasierte Verhalten kümmert
 # Erzeugt einen Thread
 const Turn = preload("res://scenes/Game/scripts/TurnQueue.gd")
@@ -16,11 +15,13 @@ var RULEMANAGER: Rules = null
 var TRANSCRIPTION: Transcription = null
 
 # Notwendig für das richtige Verhalten der Funktion "Driver_Turn()" innerhalb von Turn.gd
-signal mouse_click
-signal action_finished
+signal mouse_click;
+signal action_finished;
+signal race_finished;
 
 # Speichert alle Teilnehmer des Rennens
-var Participants = []
+var Drivers = []
+var orderInWhichDriversFinished = [];
 var clicked_node: Node2D
 
 # Called when the node enters the scene tree for the first time.
@@ -32,14 +33,15 @@ func _ready():
 	$Camera.initialise()
 	
 	# Call by Reference, Participants vergibt nur eine Referenz auf sich.
-	TURNMANAGER = Turn.new(self, $Racetrack, Participants)
+	TURNMANAGER = Turn.new(self, Drivers)
 	RULEMANAGER = Rules.new()
 	
-	addParticipant(Driver.new("Christoph", Mercedes.new(), 1, false));
-	addParticipant(Driver.new("Christoph", Mercedes.new(), 2, false));
+	addDriver(Driver.new("Christoph", Mercedes.new(), 1, false));
+	addDriver(Driver.new("Markus", Golf.new(), 2, false));
+	
 	# addParticipant(Driver.new("Anja", Golf.new(), true))
 	initialiseDrivers()
-	TRANSCRIPTION = Transcription.new(Participants)
+	TRANSCRIPTION = Transcription.new(Drivers)
 	TURNMANAGER.initialise()
 	TURNMANAGER.start()
 	$HUD.init();
@@ -54,13 +56,13 @@ func _input(event):
 					print(clicked_node)
 					emit_signal("mouse_click")
 			
-func addParticipant(driver):
+func addDriver(driver):
 	# Überprüfe ob es sich um einen validen Driver handelt und ob das Rennen schon gestartet ist.
 	if driver is Driver:
-		self.Participants.append(driver)
+		self.Drivers.append(driver)
 			
 func initialiseDrivers():
-	for driver in Participants:
+	for driver in Drivers:
 		# Startposition
 		driver.setPosition($Racetrack.getStartPosition(driver.getStartIndex()).x, $Racetrack.getStartPosition(driver.getStartIndex()).y);
 		
@@ -69,7 +71,8 @@ func action(driver):
 	yield(get_tree(), "idle_frame") # Behebt das erste Parameter ist kein Objekt fehler von yield()
 	if Settings.DEBUG:
 		print(driver.NAME + "'s Aktion")
-		
+	
+	# Hier soll entschieden werden können wie das Verhalten auf verschiedenen Untergründen ist
 	var current_position = driver.getPosition()
 	$Racetrack.getGridNode(current_position.x, current_position.y).hasDriverOnIt = false;
 	var target_position: Vector2
@@ -78,7 +81,7 @@ func action(driver):
 	var vector_selection = RULEMANAGER.getPossibieVectors(TRANSCRIPTION.getPreviousVector(driver))
 	if Settings.DEBUG:
 		print("Possible Vectors: " + str(vector_selection))
-	var gridNode_selection = $Racetrack.getGridNodes(driver.getPosition(), vector_selection)
+	var gridNode_selection = $Racetrack.getChoosableGridNodes(driver.getPosition(), vector_selection)
 	if Settings.DEBUG:
 		print("Possible GridNodes: " + str(gridNode_selection))
 
@@ -116,19 +119,21 @@ func action(driver):
 			else:
 				driver.decreaseLap();
 			
-	
 	# Setze die Position des Spielers auf den neuen Platz
 	driver.setPosition(target_position.x, target_position.y)
 	$Racetrack.getGridNode(target_position.x, target_position.y).hasDriverOnIt = true;
 	# Mathe is hier ggf. noch falsch
 	TRANSCRIPTION.recordMovement(driver,-(current_position - target_position))
 	
+	emit_signal("action_finished");
 	# Überprüfe ob der Spieler alle Runden gefahren ist.
 	if (driver.getLap() > Global.getLapcount()):
 		# Entferne Spieler aus der Fahrerliste
 		driver.done();
+		self.orderInWhichDriversFinished.append(driver);
 		if isEveryDriverDone():
-			finished()
+			finished();
+			
 			
 	
 func determineDirection(current, target):
@@ -148,16 +153,17 @@ func determineDirection(current, target):
 		direction.append(Vector2.DOWN);
 	elif vector.y < 0:
 		direction.append(Vector2.UP);
-	
+
 	return direction;
 
 func isEveryDriverDone():
-	for driver in self.Participants:
+	for driver in self.Drivers:
 		if !driver.isDone():
 			return false;
 	return true;
 
 func finished():
+	TURNMANAGER.end();
 	emit_signal("race_finished");
 	# func _init()
 	#	Initialisiert Racetrack

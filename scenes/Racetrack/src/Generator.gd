@@ -25,9 +25,9 @@ static func build(Racetrack, path):
 			if map[y][x] is Array:
 				node = mapping[int(map[y][x][0])].new(x, y, int(map[y][x][1]));
 				if int(map[y][x][0]) == 3:
-					Racetrack.StartFinishTiles.append(node);
+					Racetrack.StartFinishNodes.append(node);
 				elif int(map[y][x][0]) == 4:
-					Racetrack.StartPositionTiles.append(node);
+					Racetrack.StartPositionNodes.append(node);
 			else:
 				node = mapping[int(map[y][x])].new(x, y);
 			Racetrack.GRID[x].append(node)

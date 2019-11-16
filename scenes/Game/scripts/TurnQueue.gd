@@ -9,8 +9,7 @@ signal next_driver
 
 extends Node2D
 var Gamemaster: Node2D
-var Racetrack: Node2D
-var Participants: Array
+var Drivers: Array
 
 # Initializes a variable once the Node the script is attached to and its children are part of the scene tree.
 onready var active_driver: Driver
@@ -20,16 +19,15 @@ func getCurrentDriver():
 	
 var active: bool = false
 
-func _init(gamemaster, racetrack, participants):
-	self.Gamemaster = gamemaster
-	self.Racetrack = racetrack
-	self.Participants = participants
+func _init(gamemaster, drivers):
+	self.Gamemaster = gamemaster;
+	self.Drivers = drivers;
 	
 func initialise():
 	Global.incrementTurn()
 	self.name = "TurnQueue"
 	Gamemaster.add_child(self)
-	for driver in Participants:
+	for driver in Drivers:
 		self.add_child(driver)
 	active_driver = self.get_child(0)
 
@@ -46,7 +44,7 @@ func loop():
 		loop()
 
 func end():
-	active = false
+	active = false;
 
 func next_driver():
 	var next_driver_index : int = (active_driver.get_index() + 1) % get_child_count()
