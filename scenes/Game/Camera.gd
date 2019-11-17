@@ -21,11 +21,11 @@ func _input(event):
 		move_camera = false
 		
 	if event.is_action_pressed("ui_scroll_up"):
-		if (self.zoom > Vector2(1,1)):
+		if (self.zoom > Vector2(0.5,0.5)):
 			self.zoom -= Vector2(0.05, 0.05)
 		
 	elif event.is_action_pressed("ui_scroll_down"):
-		if (self.zoom < Vector2(3,3)):
+		if (self.zoom < Vector2(5,5)):
 			self.zoom += Vector2(0.05, 0.05)
 		
 func _physics_process(delta):

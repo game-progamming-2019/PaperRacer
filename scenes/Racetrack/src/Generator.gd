@@ -10,7 +10,8 @@ static func build(Racetrack, path):
 	1: Curb,
 	2: PaperTile,
 	3: StartFinish,
-	4: StartPosition
+	4: StartPosition,
+	5: CurbKurve
 	}
 	
 	# Contains all necessary information

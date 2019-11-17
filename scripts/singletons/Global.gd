@@ -10,7 +10,7 @@ var ID_counter = 0 setget setID, getUniqueID
 var Round: int setget setRound, getRound
 var ROWS: int
 var COLUMNS: int
-var RECTANGLE_SIZE: float = 31
+var RECTANGLE_SIZE: float = 63
 
 # Initialisier mit -1 um sicherzustellen das der Wert noch nicht überschrieben wurde
 var LAPCOUNT: int = -1 setget setLapcount, getLapcount
