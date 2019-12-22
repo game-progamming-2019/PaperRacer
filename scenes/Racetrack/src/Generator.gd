@@ -17,13 +17,15 @@ static func build(Racetrack, path):
 	# Contains all necessary information
 	var Information = JSON_parse(path)
 	Global.COLUMNS = int(Information["columns"])
-	Global.ROWS = int(Information["rows"])
-	var map = Information["map"]
+	Global.ROWS = int(Information["rows"]);
+	var map = Information["map"];
 	for x in range(Global.get_column_count()):
-		Racetrack.GRID.append([])
+		Racetrack.GRID.append([]);
 		for y in range(Global.get_row_count()):
 			var node;
 			if map[y][x] is Array:
+				print(x);
+				print(y);
 				node = mapping[int(map[y][x][0])].new(x, y, int(map[y][x][1]));
 				if int(map[y][x][0]) == 3:
 					Racetrack.StartFinishNodes.append(node);
@@ -31,8 +33,8 @@ static func build(Racetrack, path):
 					Racetrack.StartPositionNodes.append(node);
 			else:
 				node = mapping[int(map[y][x])].new(x, y);
-			Racetrack.GRID[x].append(node)
-			Racetrack.get_node("Track").add_child(node)
+			Racetrack.GRID[x].append(node);
+			Racetrack.get_node("Track").add_child(node);
 	
 	#	----------------	#
 	#	Decoration Layer	#
