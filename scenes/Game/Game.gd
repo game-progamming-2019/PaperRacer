@@ -33,17 +33,17 @@ func _ready():
 	$Camera.initialise()
 	
 	# Call by Reference, Participants vergibt nur eine Referenz auf sich.
-	# TURNMANAGER = Turn.new(self, Drivers)
-	# RULEMANAGER = Rules.new()
+	TURNMANAGER = Turn.new(self, Drivers)
+	RULEMANAGER = Rules.new()
 	
-	# addDriver(Driver.new("Christoph", Mercedes.new(), 0, false));
+	addDriver(Driver.new("Christoph", Mercedes.new(), 0, false));
 	
 	# addParticipant(Driver.new("Anja", Golf.new(), true))
-	# initialiseDrivers()
-	# TRANSCRIPTION = Transcription.new(Drivers)
-	# TURNMANAGER.initialise()
-	# TURNMANAGER.start()
-	# $HUD.init();
+	initialiseDrivers()
+	TRANSCRIPTION = Transcription.new(Drivers)
+	TURNMANAGER.initialise()
+	TURNMANAGER.start()
+	$HUD.init();
 	
 func _input(event):
 	if event is InputEventMouseButton:

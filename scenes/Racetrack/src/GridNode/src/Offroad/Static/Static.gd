@@ -1,4 +1,4 @@
-extends Decoration
+extends Offroad
 class_name Static
 
 # Standartrichtung eines Tiles ist immer Oben.

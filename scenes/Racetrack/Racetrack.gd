@@ -3,14 +3,15 @@
 # Aktualisiert 15.09.2019
 extends Node2D
 
-var GRID = []
+var GRID = [];
+var DECO = [];
 var StartPositionNodes = [];
 var StartFinishNodes = [];
 
 # Baut das Level
 # 14.09 - Baut ein Feld der Größe ROWS, COLUMNS
 func initialise(map_path):
-	Generator.build(self, map_path)
+	Generator.build(self, map_path);
 
 # Irreführender Name, 
 func getChoosableGridNodes(position: Vector2, selection):
@@ -58,6 +59,8 @@ func getGridNodesInBetween(current, target):
 	return gridNodes;
 		
 func getCoordinates(gridNode):
+	print("GRIDs row count: " + String(GRID.size()));
+	print("GRIDs column count: " + String(GRID[0].size()));
 	for x in range(Global.get_row_count()):
 		for y in range(Global.get_column_count()):
 			if gridNode == GRID[x][y]:
