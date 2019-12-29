@@ -22,3 +22,8 @@ func on_next_driver(driver):
 	active_driver = driver;
 	update();
 	
+func playerWon(drivers):
+	var msg = "";
+	for i in range(drivers.size()):
+		msg += "Spieler: " + drivers[i].getName() + " ist " + String(i + 1) + "er geworden\n";
+	$Won.text = msg;

@@ -24,7 +24,6 @@ collide_with_bodies = false
 script = ExtResource( 4 )
 
 [node name="HUD" type="CanvasLayer" parent="."]
-editor/display_folded = true
 script = ExtResource( 5 )
 
 [node name="Lap" type="Label" parent="HUD"]
@@ -32,6 +31,7 @@ margin_left = 40.0
 margin_top = 54.0
 margin_right = 88.0
 margin_bottom = 68.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Runde: "
 
 [node name="Name" type="Label" parent="HUD"]
@@ -39,6 +39,7 @@ margin_left = 40.0
 margin_top = 34.0
 margin_right = 88.0
 margin_bottom = 48.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Fahrer:"
 
 [node name="Position" type="Label" parent="HUD"]
@@ -46,4 +47,12 @@ margin_left = 39.0
 margin_top = 73.0
 margin_right = 87.0
 margin_bottom = 87.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Position:"
+
+[node name="Won" type="Label" parent="HUD"]
+margin_left = 487.1
+margin_top = 292.299
+margin_right = 535.1
+margin_bottom = 306.299
+custom_colors/font_color = Color( 0, 0, 0, 1 )

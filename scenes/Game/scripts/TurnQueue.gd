@@ -51,5 +51,6 @@ func next_driver():
 	active_driver = get_child(next_driver_index)
 	if active_driver.isDone():
 		self.move_child(active_driver, get_child_count());
-		next_driver();
+		if !Gamemaster.isEveryDriverDone():
+			next_driver();
 	emit_signal("next_driver", active_driver);

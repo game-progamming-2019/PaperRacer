@@ -5,6 +5,8 @@
 extends Sprite
 class_name Driver
 
+var direction: Vector2
+var initial = true;
 var ID = Global.getUniqueID() setget setID, getID 
 var NAME: String
 var VEHICLE: Vehicle
@@ -22,17 +24,25 @@ func _init(name, vehicle, startIndex, ki):
 	self.KI = ki
 	self.set_texture(VEHICLE.getTexture())
 	self.scale = Vector2(0.5, 0.5)
-
+	self.rotation_degrees = 270
+	
 func getName():
 	return self.NAME
 
 func getVehicle():
 	return self.VEHICLE
+
+func setDirection(origin, target):
+	var angle = origin.angle_to_point(target) * 180/PI;
+	self.rotation_degrees = angle + 270
 	
 func setPosition(x, y):
+	if !initial:
+		setDirection(getPosition() ,Vector2(x, y));
 	self._position = Vector2(x,y)
 	self.position = Vector2(x * Global.get_rectangle_size() + Global.get_rectangle_size() / 2, y * Global.get_rectangle_size() + Global.get_rectangle_size() / 2)
-
+	initial = false;
+	
 func getPosition():
 	return self._position;
 	

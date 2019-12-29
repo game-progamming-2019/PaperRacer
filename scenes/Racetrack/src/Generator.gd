@@ -48,7 +48,6 @@ static func build(Racetrack, path):
 	var deco = Information["decoration"];
 	for x in range(Global.get_column_count()):
 		for y in range(Global.get_row_count()):
-			print(deco.size());
 			if deco[y][x] != 0:
 				var node = mapping[int(deco[y][x])].new(x, y);
 				Racetrack.DECO.append(node);

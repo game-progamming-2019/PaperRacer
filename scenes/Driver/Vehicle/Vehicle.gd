@@ -1,10 +1,9 @@
-extends Node
+extends AnimatedSprite
 
 class_name Vehicle
 
 # Speichert die jetzige Geschwindigkeit des Fahrzeugs
 var vehicle_name: String
-var speed: int
 var texture = null
 
 # Liefert die Texture des Fahrzeugs

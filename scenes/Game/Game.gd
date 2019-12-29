@@ -36,7 +36,7 @@ func _ready():
 	TURNMANAGER = Turn.new(self, Drivers)
 	RULEMANAGER = Rules.new()
 	
-	# addDriver(Driver.new("Christoph", Mercedes.new(), 0, false));
+	addDriver(Driver.new("Christoph", Mercedes.new(), 0, false));
 	addDriver(Driver.new("Mike", Golf.new(), 0, false));
 	
 	initialiseDrivers()
@@ -164,6 +164,7 @@ func isEveryDriverDone():
 func finished():
 	TURNMANAGER.end();
 	emit_signal("race_finished");
+	$HUD.playerWon(orderInWhichDriversFinished)
 	# func _init()
 	#	Initialisiert Racetrack
 	#   Initialisiert Camera
