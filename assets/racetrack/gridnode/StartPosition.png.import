@@ -14,13 +14,13 @@ dest_files=[ "res://.import/StartPosition.png-3ae77e6e82e2ab1f9f52b7bd0f57fb2f.s
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

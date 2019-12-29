@@ -14,7 +14,7 @@ dest_files=[ "res://.import/sand.png-265987e1cd6e3b945d6bf3ce74dc1ec5.stex" ]
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0

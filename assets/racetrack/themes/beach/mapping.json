@@ -1,0 +1,16 @@
+{
+	"theme-name": "beach",
+	"path-prefix": "res://assets/racetrack/themes/beach/",
+	"dynamic": {
+		"path-prefix": "dynamic/",
+		"moving": [
+		],
+		"fixed": [
+			{
+				"id": "1",
+				"name": "palmtree",
+				"path-suffix": "fixed/palmtree/anim.tres"	
+			}
+		]
+	}
+}

@@ -50,3 +50,8 @@ func get_column_count():
 	
 #read only flag please
 
+static func JSON_parse(path):
+	var file = File.new()
+	file.open(path, File.READ)
+	var result = JSON.parse(file.get_as_text()).result
+	return result

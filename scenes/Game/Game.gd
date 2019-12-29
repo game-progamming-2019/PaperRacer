@@ -87,7 +87,7 @@ func action(driver):
  	# Falls der Fahrer sich gegen eine Wand fährt darf er anhalten in der Runde.
 	if len(gridNode_selection) == 0:
 		vector_selection = [Vector2(0,0)]
-		gridNode_selection = $Racetrack.getGridNodes(driver.getPosition(), vector_selection)
+		gridNode_selection = $Racetrack.getChoosableGridNodes(driver.getPosition(), vector_selection)
 		
 	if driver.KI:
 		# "KI" wird auf ein zufälliges erlaubtes Feld gesetzt

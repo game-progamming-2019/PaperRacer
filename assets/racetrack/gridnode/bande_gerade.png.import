@@ -14,7 +14,7 @@ dest_files=[ "res://.import/bande_gerade.png-6f67ec8ab269a2e1447b8670c6d98775.st
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0

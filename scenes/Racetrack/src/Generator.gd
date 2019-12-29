@@ -18,45 +18,50 @@ static func build(Racetrack, path):
 	}
 	
 	# Contains all necessary information
-	var Information = JSON_parse(path)
+	var Information = Global.JSON_parse(path)
 	Global.COLUMNS = int(Information["columns"])
 	Global.ROWS = int(Information["rows"]);
+	
+	
 	var map = Information["map"];
-	for x in range(Global.get_row_count()):
+	for x in range(Global.get_column_count()):
 		Racetrack.GRID.append([]);
-		for y in range(Global.get_column_count()):
+		for y in range(Global.get_row_count()):
+			
 			var node;
-			if map[x][y] is Array:
-				node = mapping[int(map[x][y][0])].new(x, y, int(map[x][y][1]));
-				if int(map[x][y][0]) == 3:
+			if map[y][x] is Array:
+				node = mapping[int(map[y][x][0])].new(x, y, int(map[y][x][1]));
+				if int(map[y][x][0]) == 3:
 					Racetrack.StartFinishNodes.append(node);
-				elif int(map[x][y][0]) == 4:
+				elif int(map[y][x][0]) == 4:
 					Racetrack.StartPositionNodes.append(node);
 			else:
-				node = mapping[int(map[x][y])].new(x, y);
+				node = mapping[int(map[y][x])].new(x, y);
+				
 			Racetrack.GRID[x].append(node);
 			Racetrack.get_node("Track").add_child(node);
 	
 	#	----------------	#
 	#	Decoration Layer	#
 	#	----------------	#
+	var MappingInformation = Global.JSON_parse(Information["mapping-file"]);
+	var DecorationLayer = Information["decoration"];
 	
-	mapping = {
-		1: Palmtree
-	};
-	var deco = Information["decoration"];
 	for x in range(Global.get_column_count()):
 		for y in range(Global.get_row_count()):
-			print(deco.size());
-			if deco[x][y] != 0:
-				var node = mapping[int(deco[x][y])].new(x, y);
-				Racetrack.DECO.append(node);
-				Racetrack.get_node("Decoration").add_child(node);
-	
-	
-	
-static func JSON_parse(path):
-	var file = File.new()
-	file.open("res://assets/maps/map_1.json", File.READ)
-	var result = JSON.parse(file.get_as_text()).result
-	return result
+			if DecorationLayer[y][x] is Array: # or Object for later iterations
+				pass
+			else:
+				var id = DecorationLayer[y][x];
+				var obj = get_obj(id, MappingInformation);
+				match obj["class"]:
+					"EventBased": pass;
+					"Permanent": pass;
+					"Fixed": print("Hello");
+				
+				
+static func get_obj(id, mapping):
+	for fixed in mapping["dynamic"]["fixed"]:
+		if int(fixed.id) == id:
+			fixed["class"] = "Fixed";
+			return fixed;

@@ -14,7 +14,7 @@ dest_files=[ "res://.import/bande.png-4bbc70b009df5aa11ba1c6adb7cb790a.stex" ]
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0

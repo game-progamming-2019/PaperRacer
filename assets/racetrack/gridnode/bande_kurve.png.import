@@ -14,7 +14,7 @@ dest_files=[ "res://.import/bande_kurve.png-1b8cb1600d8d5e3ded3cecff6b029eb7.ste
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
