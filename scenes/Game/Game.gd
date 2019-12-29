@@ -36,9 +36,9 @@ func _ready():
 	TURNMANAGER = Turn.new(self, Drivers)
 	RULEMANAGER = Rules.new()
 	
-	addDriver(Driver.new("Christoph", Mercedes.new(), 0, false));
+	# addDriver(Driver.new("Christoph", Mercedes.new(), 0, false));
+	addDriver(Driver.new("Mike", Golf.new(), 0, false));
 	
-	# addParticipant(Driver.new("Anja", Golf.new(), true))
 	initialiseDrivers()
 	TRANSCRIPTION = Transcription.new(Drivers)
 	TURNMANAGER.initialise()
@@ -87,7 +87,7 @@ func action(driver):
  	# Falls der Fahrer sich gegen eine Wand fährt darf er anhalten in der Runde.
 	if len(gridNode_selection) == 0:
 		vector_selection = [Vector2(0,0)]
-		gridNode_selection = $Racetrack.getGridNodes(driver.getPosition(), vector_selection)
+		gridNode_selection = $Racetrack.getChoosableGridNodes(driver.getPosition(), vector_selection)
 		
 	if driver.KI:
 		# "KI" wird auf ein zufälliges erlaubtes Feld gesetzt

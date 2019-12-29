@@ -33,9 +33,9 @@ func unhighlight(selection):
 		
 func getGridNode(x,y):
 	# Überprüfe überschreitungen der Feldgröße
-	if x < 0 || x >= Global.get_row_count():
+	if x < 0 || x >= Global.get_column_count():
 		return null
-	elif y < 0 || y >= Global.get_column_count():
+	elif y < 0 || y >= Global.get_row_count():
 		return null
 	else:
 		return GRID[x][y]
@@ -61,8 +61,8 @@ func getGridNodesInBetween(current, target):
 func getCoordinates(gridNode):
 	print("GRIDs row count: " + String(GRID.size()));
 	print("GRIDs column count: " + String(GRID[0].size()));
-	for x in range(Global.get_row_count()):
-		for y in range(Global.get_column_count()):
+	for x in range(Global.get_column_count()):
+		for y in range(Global.get_row_count()):
 			if gridNode == GRID[x][y]:
 				return(Vector2(x,y))
 
@@ -73,8 +73,8 @@ func getStartPosition(index: int):
 
 # Wird nur für Debug zwecke verwendet.
 func highlight_all():
-	for x in range(Global.get_row_count()):
-		for y in range(Global.get_column_count()):
+	for x in range(Global.get_column_count()):
+		for y in range(Global.get_row_count()):
 			GRID[x][y].highlight()
 
 	
