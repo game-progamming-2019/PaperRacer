@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bande.png-4bbc70b009df5aa11ba1c6adb7cb790a.stex"
+path="res://.import/zielgerade_pfeil.png-4c2e80001aa071104c638d66e98beb02.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/racetrack/gridnode/bande.png"
-dest_files=[ "res://.import/bande.png-4bbc70b009df5aa11ba1c6adb7cb790a.stex" ]
+source_file="res://assets/racetrack/gridnode/zielgerade_pfeil.png"
+dest_files=[ "res://.import/zielgerade_pfeil.png-4c2e80001aa071104c638d66e98beb02.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/asphalt_sand.png-dbaed4557c6a9c6852fb1ca2a8684f12.stex"
+path="res://.import/bande_kurve_invers.png-c284a60ce986e01a4fecb3c4e5be96d1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/racetrack/gridnode/asphalt_sand.png"
-dest_files=[ "res://.import/asphalt_sand.png-dbaed4557c6a9c6852fb1ca2a8684f12.stex" ]
+source_file="res://assets/racetrack/gridnode/bande_kurve_invers.png"
+dest_files=[ "res://.import/bande_kurve_invers.png-c284a60ce986e01a4fecb3c4e5be96d1.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

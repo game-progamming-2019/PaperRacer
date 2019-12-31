@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/StartPosition.png-3ae77e6e82e2ab1f9f52b7bd0f57fb2f.stex"
+path="res://.import/bande_kurve_block.png-2d7810ea7d60c5fed9d640a1abed63a9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/racetrack/gridnode/StartPosition.png"
-dest_files=[ "res://.import/StartPosition.png-3ae77e6e82e2ab1f9f52b7bd0f57fb2f.stex" ]
+source_file="res://assets/racetrack/gridnode/bande_kurve_block.png"
+dest_files=[ "res://.import/bande_kurve_block.png-2d7810ea7d60c5fed9d640a1abed63a9.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

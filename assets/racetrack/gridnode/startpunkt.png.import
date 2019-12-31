@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/sand.png-265987e1cd6e3b945d6bf3ce74dc1ec5.stex"
+path="res://.import/startpunkt.png-3f123898c8ef5b657ce974c545544336.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/racetrack/gridnode/sand.png"
-dest_files=[ "res://.import/sand.png-265987e1cd6e3b945d6bf3ce74dc1ec5.stex" ]
+source_file="res://assets/racetrack/gridnode/startpunkt.png"
+dest_files=[ "res://.import/startpunkt.png-3f123898c8ef5b657ce974c545544336.stex" ]
 
 [params]
 

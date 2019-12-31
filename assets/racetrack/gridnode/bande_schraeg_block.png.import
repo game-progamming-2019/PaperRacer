@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/gras.png-e6d291ee248bed582d2b4e6c04af1fb7.stex"
+path="res://.import/bande_schraeg_block.png-059824427f62675e640ff3f38599eadd.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/racetrack/gridnode/gras.png"
-dest_files=[ "res://.import/gras.png-e6d291ee248bed582d2b4e6c04af1fb7.stex" ]
+source_file="res://assets/racetrack/gridnode/bande_schraeg_block.png"
+dest_files=[ "res://.import/bande_schraeg_block.png-059824427f62675e640ff3f38599eadd.stex" ]
 
 [params]
 
