@@ -14,7 +14,8 @@ static func build(Racetrack, path):
 	2: PaperTile,
 	3: StartFinish,
 	4: StartPosition,
-	5: CurbKurve
+	5: CurbKurve,
+	6: CurbSkewed
 	}
 	
 	# Contains all necessary information
@@ -27,33 +28,24 @@ static func build(Racetrack, path):
 		for y in range(Global.get_row_count()):
 			var node;
 			if map[y][x] is Array:
-				node = mapping[int(map[y][x][0])].new(x, y, int(map[y][x][1]));
-				if int(map[y][x][0]) == 3:
-					Racetrack.StartFinishNodes.append(node);
-				elif int(map[y][x][0]) == 4:
-					Racetrack.StartPositionNodes.append(node);
+				if int(map[y][x][0]) == 5 || int(map[y][x][0]) == 1 || int(map[y][x][0]) == 6:
+					if map[y][x].size() == 2:
+						if map[y][x][1] is String:
+							node = mapping[int(map[y][x][0])].new(x, y, String(map[y][x][1]));
+						else:
+							node = mapping[int(map[y][x][0])].new(x, y, "", int(map[y][x][1]));
+					else:
+						node = mapping[int(map[y][x][0])].new(x, y, String(map[y][x][1]), int(map[y][x][2]));
+				else:
+					node = mapping[int(map[y][x][0])].new(x, y, int(map[y][x][1]));
+					if int(map[y][x][0]) == 3:
+						Racetrack.StartFinishNodes.append(node);
+					elif int(map[y][x][0]) == 4:
+						Racetrack.StartPositionNodes.append(node);
 			else:
 				node = mapping[int(map[y][x])].new(x, y);
 			Racetrack.GRID[x].append(node);
 			Racetrack.get_node("Track").add_child(node);
-	
-	#	----------------	#
-	#	Decoration Layer	#
-	#	----------------	#
-	
-	mapping = {
-		1: Palmtree
-	};
-	
-	var deco = Information["decoration"];
-	for x in range(Global.get_column_count()):
-		for y in range(Global.get_row_count()):
-			if deco[y][x] != 0:
-				var node = mapping[int(deco[y][x])].new(x, y);
-				Racetrack.DECO.append(node);
-				Racetrack.get_node("Decoration").add_child(node);
-	
-	
 	
 static func JSON_parse(path):
 	var file = File.new()

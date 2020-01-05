@@ -2,7 +2,7 @@
 # Erstellt: 15.09.2019
 # Beschreibung: Skript für die Klasse Driver
 # ToDo: Setter verbieten
-extends Sprite
+extends AnimatedSprite
 class_name Driver
 
 var direction: Vector2
@@ -22,9 +22,11 @@ func _init(name, vehicle, startIndex, ki):
 	self.VEHICLE = vehicle
 	self.startIndex = startIndex
 	self.KI = ki
-	self.set_texture(VEHICLE.getTexture())
 	self.scale = Vector2(0.5, 0.5)
 	self.rotation_degrees = 270
+	self.scale = Vector2(0.15, 0.15);
+	self.frames = VEHICLE.getFrames();
+	self.play();
 	
 func getName():
 	return self.NAME

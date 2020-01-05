@@ -1,16 +1,16 @@
-extends AnimatedSprite
+extends Node2D
 
 class_name Vehicle
 
 # Speichert die jetzige Geschwindigkeit des Fahrzeugs
 var vehicle_name: String
-var texture = null
+var frames = null
 
 # Liefert die Texture des Fahrzeugs
-func getTexture():
-	if self.texture == null:
+func getFrames():
+	if self.frames == null:
 		pass
-	return self.texture
+	return self.frames
 
 func getName():
 	return vehicle_name

@@ -19,12 +19,17 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/Racetrack/src/GridNode/src/Offroad/Static/Curb/CurbKurve.gd"
 }, {
+"base": "Static",
+"class": "CurbSkewed",
+"language": "GDScript",
+"path": "res://scenes/Racetrack/src/GridNode/src/Offroad/Static/Curb/curbSkewed.gd"
+}, {
 "base": "Node",
 "class": "Decoration",
 "language": "GDScript",
 "path": "res://scenes/Racetrack/src/Decoration/Decoration.gd"
 }, {
-"base": "Sprite",
+"base": "AnimatedSprite",
 "class": "Driver",
 "language": "GDScript",
 "path": "res://scenes/Driver/Driver.gd"
@@ -99,7 +104,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/Racetrack/src/GridNode/src/Road/Street/Street.gd"
 }, {
-"base": "Node",
+"base": "Node2D",
 "class": "Vehicle",
 "language": "GDScript",
 "path": "res://scenes/Driver/Vehicle/Vehicle.gd"
@@ -107,6 +112,7 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "Curb": "",
 "CurbKurve": "",
+"CurbSkewed": "",
 "Decoration": "",
 "Driver": "",
 "DynamicDecoration": "",

@@ -37,7 +37,7 @@ func _ready():
 	RULEMANAGER = Rules.new()
 	
 	addDriver(Driver.new("Christoph", Mercedes.new(), 0, false));
-	addDriver(Driver.new("Mike", Golf.new(), 0, false));
+	addDriver(Driver.new("Mike", Golf.new(), 1, false));
 	
 	initialiseDrivers()
 	TRANSCRIPTION = Transcription.new(Drivers)
