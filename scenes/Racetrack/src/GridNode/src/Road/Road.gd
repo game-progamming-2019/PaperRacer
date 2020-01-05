@@ -21,8 +21,8 @@ func _init(x, y, isFinishLine, isStartPosition).(true, x, y):
 	collisionshape.shape.set_extents(Vector2(Global.get_rectangle_size()/2, Global.get_rectangle_size()/2));
 	
 	self.add_child(Highlight);
-func highlight():
-	Highlight.highlight();
+func highlight(driver):
+	Highlight.highlight(driver);
 	
 func unhighlight():
 	Highlight.unhighlight();

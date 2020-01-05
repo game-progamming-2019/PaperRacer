@@ -5,4 +5,3 @@
 [node name="Highlight" type="Node2D"]
 z_index = 3
 script = ExtResource( 1 )
-

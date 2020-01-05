@@ -17,13 +17,13 @@ script = ExtResource( 1 )
 
 [node name="palme" type="AnimatedSprite" parent="Decoration"]
 frames = ExtResource( 2 )
-frame = 19
+frame = 16
 playing = true
 
 [node name="sea" type="AnimatedSprite" parent="Decoration"]
 position = Vector2( 1296.97, 841.073 )
 frames = ExtResource( 3 )
-frame = 8
+frame = 4
 playing = true
 
 [node name="coconut" type="Sprite" parent="Decoration"]

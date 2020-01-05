@@ -36,8 +36,8 @@ func _ready():
 	TURNMANAGER = Turn.new(self, Drivers)
 	RULEMANAGER = Rules.new()
 	
-	addDriver(Driver.new("Christoph", Mercedes.new(), 0, false));
-	addDriver(Driver.new("Mike", Golf.new(), 1, false));
+	addDriver(Driver.new("Christoph", Mercedes.new(), 0, false, Color("#0088FF")));
+	addDriver(Driver.new("Mike", Golf.new(), 1, false, Color("#FF0000")));
 	
 	initialiseDrivers()
 	TRANSCRIPTION = Transcription.new(Drivers)
@@ -98,7 +98,7 @@ func action(driver):
 		
 	else:
 		clicked_node = null
-		$Racetrack.highlight(gridNode_selection)
+		$Racetrack.highlight(driver, gridNode_selection)
 		# Highlight und Unhighlight wird nur für den Spieler gemacht.
 		yield(self, "mouse_click")
 		while !(clicked_node in gridNode_selection):

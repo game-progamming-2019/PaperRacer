@@ -23,9 +23,9 @@ func getChoosableGridNodes(position: Vector2, selection):
 					field.append(getGridNode(position.x + vector.x, position.y + vector.y))
 	return field
 	
-func highlight(selection):
+func highlight(driver, selection):
 	for gridNode in selection:
-		gridNode.highlight()
+		gridNode.highlight(driver);
 
 func unhighlight(selection):
 	for gridNode in selection:

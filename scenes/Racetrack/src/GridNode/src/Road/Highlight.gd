@@ -1,14 +1,16 @@
 extends Node2D
 
 var _visible = false
+var _active_driver;
 
 func _draw():
 	if _visible:
 		var radius = Global.get_rectangle_size() / 8
-		var color = Color("#0088FF")
+		var color = _active_driver.getColor();
 		draw_circle_arc_poly(position, radius, 0, 360, color)
 
-func highlight():
+func highlight(driver):
+	_active_driver = driver;
 	_visible = true
 	update()
 	

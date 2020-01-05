@@ -15,8 +15,10 @@ var _position: Vector2
 var startIndex: int
 var lap: int = 0;
 var done: bool = false;
+var color;
 
-func _init(name, vehicle, startIndex, ki):
+func _init(name, vehicle, startIndex, ki, color):
+	self.color = color;
 	self.z_index = 2
 	self.NAME = name
 	self.VEHICLE = vehicle
@@ -34,6 +36,9 @@ func getName():
 func getVehicle():
 	return self.VEHICLE
 
+func getColor():
+	return self.color;
+	
 func setDirection(origin, target):
 	var angle = origin.angle_to_point(target) * 180/PI;
 	self.rotation_degrees = angle + 270
